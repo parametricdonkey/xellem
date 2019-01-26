@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<exchange xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://download.autodesk.com/us/navisworks/schemas/nw-exchange-12.0.xsd" units="ft" filename="OT_BIMM_ARCH_S0_REV01.rvt" filepath="D:\0_CLIENTI\__A__BIM_MANAGEMENT_2017\07_MODEL CHK\ESERCIZI\2018_06">
+  <selectionsets>
+    <selectionset name="non compilato OT_WBS" guid="70a34919-5f47-4924-a09c-8fa1ebe7eb13">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="no_prop" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Entità</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_170787">OT_WBS</name>
+            </property>
+            <value>
+              <data type="wstring"></data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+    <selectionset name="non compilato OT_LOD" guid="d6385ad5-a606-471b-8f43-c506d599941d">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="no_prop" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Entità</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_170685">OT_LOD</name>
+            </property>
+            <value>
+              <data type="wstring"></data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+    <selectionset name="elementi toCheck" guid="74809c91-fb76-4c74-b8a8-4589f7954787">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="not_equals" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Entità</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_170583">OT_CHECK</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+  </selectionsets>
+</exchange>

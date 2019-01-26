@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <houses>
+        <house id="2">Lannister</house>
+        <house id="4">Stark</house>
+        <house id="1">Greyjoy</house>
+        <house id="3">Targaryen</house>
+        <house id="8">Tyrell</house>
+    </houses>
+    <swords>
+        <sword owner="Joffrey Lannister">Widows Wail</sword>
+        <sword owner="Arya Stark">Widows Wail</sword>
+        <sword owner="Brienne of Tarth">Widows Wail</sword>
+        <sword owner="Samwell Tarly">Heartsbane</sword>
+        <sword owner="Jon Snow">Longclaw</sword>
+    </swords> 
+</root> 

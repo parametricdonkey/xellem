@@ -1,0 +1,3 @@
+pippo,http://www.google.it
+paperino,http://www.oneteam.it
+pluto,http://www.davidemadeddu.it

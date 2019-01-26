@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+
+    <h1>My First Heading</h1>
+
+    <p>My first paragraph.</p>
+
+    <input type="file" id="input">
+    <!-- potrei attivare la funzione read una volta selezionato e caricato il file con la funzione CHANGE -->
+    <input type="submit" id="send" onclick='read()'>
+
+
+    <p id="info">
+        File info
+    </p>
+
+    
+    <p id="show">
+            File content
+        </p>
+
+    <script>
+        function read() {
+            //ci vorrebbe un try/catch con alert "seleziona un file"
+            const selectedFile = document.getElementById('input');
+            var file = selectedFile.files[0];
+            var show=document.getElementById("show"); 
+            var info=document.getElementById("info");
+           info.innerHTML=info.innerHTML+"<br> File name: "
+           +file.name+"<br> File size (Kb): "+file.size
+           +"<br> File Type: "+file.type;
+           
+           var reader=new FileReader();
+           reader.onload=function(e){
+               show.innerHTML=reader.result;
+           }
+           reader.readAsText(file);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

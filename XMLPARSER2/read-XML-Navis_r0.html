@@ -1,0 +1,112 @@
+<h3>Read XML Navis</h3>
+<p id="outStr"></p>
+<p id="outTab"></p>
+
+<script>
+    function init() {
+
+        var attrName = [];
+        var selection;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var XMLDoc = this.responseXML;
+                console.log(XMLDoc);
+
+                var XMLRoot = XMLDoc.getRootNode();//nodeValue;
+                console.log(XMLRoot);
+
+                var XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag
+                console.log(XMLRootAttributes);
+
+                for (i = 0; i < XMLRootAttributes.length; i++) {
+                    attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag
+
+                    var attrNameU = attrName.filter(function (elem, pos) {
+                        return attrName.indexOf(elem) == pos;
+                    });     
+                                      
+                }
+                console.log("attrName= ---> " + attrName);
+                console.log("attrName[i]= ---> " + attrName[2]); //accedo ad un elemento a caso
+                
+                //PROVO A FARE UNA SELEZIONE E RICAVARE GLI ATTRIBUTI
+                var selection= select(XMLDoc,attrName[2]);
+                console.log(selection);
+
+
+                //RICAVO I NODI DELLA SELEZIONE
+                // var selectionNodes=getNodes(selection);
+                // console.log(selectionNodes);
+
+
+                //questo è un testttt!
+                var XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selection); //restituisce tutti i tag
+                console.log(XMLSelectionRootAttributes);
+
+
+
+
+
+                //ELENCO
+                var schools = this.responseXML.getElementsByTagName("selectionset");
+                var strOut = "<ul>";
+                for (i = 0; i < schools.length; i++) {
+                    var name = schools[i].getElementsByTagName("conditions")[0].innerHTML;
+                    var web = schools[i].getElementsByTagName("condition")[0].innerHTML;
+
+
+                    strOut += "<li><a href='" + web;
+                    strOut += "' target='_blank'>" + name + "</a></li>";
+                }
+                strOut += "</ul>";
+                //TABLE
+                document.write("<table align='left' bgcolor='255,255,255,275' border='1' id='outTab'>");
+                // var table="<table>";
+                for (i = 0; i < attrName.length; i++) {
+                    document.write("<tr><td>");
+                    document.write(attrNameU[i]);
+                    document.write("</tr></td>");
+                    // table +="<tr>";
+                    // table +="<td>"+attrName[i]+"</td>";
+                    // table +="</tr>";
+                }
+                document.write("</table>");
+                // table="</table>";
+
+                //DOCUMENTO
+                //document.getElementById("outStr").innerHTML = strOut;
+                //document.getElementById("outTab").innerHTML = table;
+            }
+        };
+        // xhttp.open("GET", "read.xml", true);
+        xhttp.open("GET", "navisSearch1.xml", true);
+        xhttp.send();
+
+    }
+    window.onload = init;
+
+
+    function select (XMLDoc,XMLNode){
+        var output=XMLDoc.getElementsByTagName(XMLNode);
+        return output;
+    }
+
+    function getNodes (XMLDoc, select){
+        let nodes=XMLDoc.getElementsByTagName(""+selection+"");
+        let attrName;
+        for (i = 0; i < nodes.length; i++) {
+                    attrName.push(nodes[i].nodeName); //creo array con tutti i nomi dei tag
+                    let attrNameU = attrName.filter(function (elem, pos) {
+                        return attrName.indexOf(elem) == pos;
+                    });                                          
+                }
+        return attrNameU;
+    }
+
+
+
+
+</script>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<title>XML Data Block Demo</title>
+<script>
+function runDemo() {
+  var doc = document.getElementById("purchase-order").contentDocument;
+  var lineItems = doc.getElementsByTagName("http://example.mozilla.org/PurchaseOrder", "lineItem");
+  var firstPrice = lineItems[0].getElementsByTagName("http://example.mozilla.org/PurchaseOrder", "price")[0].textContent;
+  document.getElementById("output-box").textContent = "The purchase order contains " + lineItems.length + " line items. The price of the first line item is " + firstPrice + ".";
+}
+</script>
+</head>
+<body onload="runDemo()";>
+<object id="purchase-order" data="mozzilla_r0.xml" type="text/xml" style="display: none;"></object>
+<div id="output-box">Demo did not run</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<input type="file" id="fileSelezionati" multiple>
+
+<p id="infoDiv"></p>
+
+
+<script>
+var fileSelezionati = document.getElementById("fileSelezionati").files;
+
+var info = document.getElementById("infoDiv");
+var file;
+for (var i=0; i<fileSelezionati.length; i++) {
+	file = fileSelezionati[i];
+	info.innerHTML = info.innerHTML+file.name+" ("+file.size+" byte, "+file.type+")<br/>";
+}
+
+
+
+</script>
+

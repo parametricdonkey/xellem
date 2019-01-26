@@ -1,0 +1,64 @@
+<h3>Read XML Navis</h3>
+<p id="outStr"></p>
+<p id="outTab"></p>
+
+<script>
+    function init() {
+
+        var attrName=[];
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                
+                var XMLDoc=this.responseXML;
+                console.log(XMLDoc);
+                
+                var XMLRoot=XMLDoc.getRootNode();//nodeValue;
+                console.log(XMLRoot);
+
+                var XMLRootAttributes=XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag
+                console.log(XMLRootAttributes);
+
+                for (i=0;i<XMLRootAttributes.length;i++){
+                    attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag
+                }
+                console.log("attrName= ---> "+attrName);
+                console.log("attrName[5]= ---> "+attrName[5]); //accedo ad un elemento a caso
+             
+                //ELENCO
+                var schools=this.responseXML.getElementsByTagName("selectionset");
+                var strOut="<ul>";                
+                for (i=0;i<schools.length;i++){
+                    var name = schools[i].getElementsByTagName("conditions")[0].innerHTML;                    
+                    var web = schools[i].getElementsByTagName("condition")[0].innerHTML;
+                    
+                    
+                    strOut +="<li><a href='"+web;
+                    strOut +="' target='_blank'>" + name + "</a></li>";   
+                }
+                strOut +="</ul>";
+                //TABLE
+                document.write("<table border='1' id='outTab'>");
+                // var table="<table>";
+                for (i=0;i<attrName.length;i++){
+                    document.write("<tr><td>");
+                    document.write(attrName[i]);
+                    document.write("</tr></td>");
+                    // table +="<tr>";
+                    // table +="<td>"+attrName[i]+"</td>";
+                    // table +="</tr>";
+                }
+                document.write("</table>");
+                // table="</table>";
+                
+                //DOCUMENTO
+                document.getElementById("outStr").innerHTML = strOut;
+                document.getElementById("outTab").innerHTML = table;
+            }
+        };
+        xhttp.open("GET", "navisSearch1.xml", true);
+        xhttp.send();
+
+    }
+    window.onload = init;
+</script>

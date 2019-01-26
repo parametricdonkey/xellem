@@ -1,0 +1,14 @@
+<sites>
+    <school>
+        <name>Università di Pippo</name>
+        <web>http://www.google.it</web>
+    </school>
+    <school>
+        <name>Università di Pluto</name>
+        <web>http://www.repubblica.it</web>
+    </school>
+    <school>
+        <name>Università di Paperino</name>
+        <web>http://www.corriere.it</web>
+    </school>
+</sites>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <!-- <script src='script_r6.js'></script> -->
+
+    <h1>Openfile</h1>
+
+
+    <input type="file" id="file-input">
+
+    <input type="submit" id="send" onclick='read()'>
+
+
+    <p>File Content</p>
+    <div id="file-content"></div>
+
+    <p>File XML Reader</p>
+    <div id="XML-area"></div>
+
+
+    <script>
+        function readSingleFile(e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                // Display file content
+                displayContents(contents);
+            };
+            // reader.readAsText(file);
+            // reader.readAsArrayBuffer(file);
+            // reader.readAsBinaryString(file);
+            reader.readAsDataURL(file);
+        }
+
+        function displayContents(contents) {
+            var element = document.getElementById('file-content');
+            element.innerHTML = contents;
+        }
+
+        document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+        // docByID=document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+        docByID = document.getElementById('file-input'); //return HTMLInputElement
+
+        //__________________________________________________
+        //°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+
+        var parser = new DOMParser;
+        var doc = parser.parseFromString(docByID, "application/xml"); //return object XMLDocument --> http://help.dottoro.com/ljbcjfot.php https://www.w3schools.com/xml/dom_document.asp 
+
+        console.log("this is doc " + doc);
+        console.log("this is docByID " + docByID);
+        console.log("---------------------------------------------------");
+
+
+        var XMLRootAttributes = doc.getElementsByTagName("*"); //restituisce tutti i tag
+        console.log("XMLRootAttributes " + XMLRootAttributes);
+
+        var XMLRoot = doc.getRootNode();//nodeValue;
+        console.log(XMLRoot);
+
+
+
+    </script>
+</body>
+
+</html>
