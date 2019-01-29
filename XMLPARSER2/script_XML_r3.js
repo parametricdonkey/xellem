@@ -1,29 +1,39 @@
 
+//declare variables
 var selects;
 var path;
 
+var xhttp;
+var attrName = [];
+var XMLDoc;
+var XMLRoot;
+var XMLRootAttributes;
+var XMLSelectionRootAttributes;
+var attrNameU;
+var selection;
+var myobject;
+
 function init() {
-
-    var attrName = [];
-    var selection;
-
-    var xhttp = new XMLHttpRequest();
+    xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-            var XMLDoc = this.responseXML;
+            XMLDoc = this.responseXML;
+            console.log("XMLDoc --> " + XMLDoc);
             console.log(XMLDoc);
 
-            var XMLRoot = XMLDoc.getRootNode();//nodeValue;
+            XMLRoot = XMLDoc.getRootNode();//nodeValue;
+            console.log("XMLRoot --> " + XMLRoot);
             console.log(XMLRoot);
 
-            var XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag
-            console.log("XMLRootAttributes " + XMLRootAttributes);
+            XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag
+            console.log("XMLRootAttributes --> " + XMLRootAttributes);
+            console.log(XMLRootAttributes);
 
             for (i = 0; i < XMLRootAttributes.length; i++) {
                 attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag
 
-                var attrNameU = attrName.filter(function (elem, pos) {
+                attrNameU = attrName.filter(function (elem, pos) {
                     return attrName.indexOf(elem) == pos;
                 });
 
@@ -32,12 +42,14 @@ function init() {
             console.log("attrName[i]= ---> " + attrName[2]); //accedo ad un elemento a caso
 
             //PROVO A FARE UNA SELEZIONE E RICAVARE GLI ATTRIBUTI
-            var selection = select(XMLDoc, attrName[2]);
+            selection = select(XMLDoc, attrName[2]);
+            console.log("selection (XMLDoc, attrName[2] --> " + selection);
             console.log(selection);
 
 
             //questo è un testttt!
-            var XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selection); //restituisce tutti i tag
+            XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selection); //restituisce tutti i tag
+            console.log("XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
             console.log(XMLSelectionRootAttributes);
 
             //TABLE
@@ -52,20 +64,13 @@ function init() {
             // document.write("</table>");
         }
 
-
         //################### added 26th Jan 2019 https://www.electrictoolbox.com/javascript-add-options-html-select/ 
         // var i;
-        var myobject = attrName;
+        myobject = attrName;
         selects = document.getElementById("example-select");
         for (i in myobject) {
             selects.options[selects.options.length] = new Option(myobject[i], i);
         }
-
-
-
-
-
-
 
     };
     // xhttp.open("GET", "read.xml", true);
@@ -75,11 +80,11 @@ function init() {
 }
 //window.onload = init;
 
-function path(){
-var fileInput = document.getElementById('file-input');
-var file = fileInput.files[0];
-path=(window.URL||window.webkitURL).createObjectURL(file);
-console.log('path', path);
+function path() {
+    var fileInput = document.getElementById('file-input');
+    var file = fileInput.files[0];
+    path = (window.URL || window.webkitURL).createObjectURL(file);
+    console.log('path', path);
 }
 
 
@@ -121,11 +126,22 @@ function handleFileSelect(evt) {
 
 function showselectsopt() {
     if (selects.options.length > 0) {
+        XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
+        console.log("**FUNCTION** XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
+        console.log(XMLSelectionRootAttributes);
         window.alert("Text: " + selects.options[selects.selectedIndex].text + "\nValue: " + selects.options[selects.selectedIndex].value);
     }
     else {
         window.alert("Select box is empty");
     }
+}
+
+//Select function - added 29th jan 2019 
+function tagSelection() {
+    XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
+    console.log("**FUNCTION** XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
+    console.log(XMLSelectionRootAttributes);
+
 }
 
 
