@@ -7,11 +7,16 @@
     </head>
 
     <body>
-        <h3>Read XML Navis</h3>
-        <button onclick="init()" type="button" id="buttons">Click Me!</button>
-        <input type="file" id="files" name="files[]"/>
+        
 
-        <p>Show XML</p>
+        <h3>1 - Browse and choose a XML file</h3>
+        <input type="file" id="file-input" name="files[]" label="Choose file"/>
+        <h3>2 - Load your file</h3>
+        <button onclick="path();">Load</button>
+        <h3>3 - Read your XML file</h3>
+        <button onclick="init()" type="button" id="buttons">Read</button>
+
+        <p>Show XML contents</p>
         <output id="list"></output>
 
         <select id="example-select"></select>

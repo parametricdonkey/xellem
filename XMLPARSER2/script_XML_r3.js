@@ -1,5 +1,6 @@
 
 var selects;
+var path;
 
 function init() {
 
@@ -68,10 +69,19 @@ function init() {
 
     };
     // xhttp.open("GET", "read.xml", true);
-    xhttp.open("GET", "navisSearch1.xml", true);
+    // xhttp.open("GET", "navisSearch1.xml", true);
+    xhttp.open("GET", path, true);
     xhttp.send();
 }
 //window.onload = init;
+
+function path(){
+var fileInput = document.getElementById('file-input');
+var file = fileInput.files[0];
+path=(window.URL||window.webkitURL).createObjectURL(file);
+console.log('path', path);
+}
+
 
 //FUNZIONI
 function select(XMLDoc, XMLNode) {
