@@ -129,6 +129,7 @@ function showselectsopt() {
         XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
         console.log("**FUNCTION** XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
         console.log(XMLSelectionRootAttributes);
+        setTable(); //crea la tabella
         window.alert("Text: " + selects.options[selects.selectedIndex].text + "\nValue: " + selects.options[selects.selectedIndex].value);
     }
     else {
@@ -144,4 +145,16 @@ function tagSelection() {
 
 }
 
+//TABLE
+function setTable() {
+    let tableArea=document.getElementById('table');
+    let table=document.createElement('table');
+    let tblB=document.createElement('tbody');
+    table.appendChild(tblB);
 
+    for (i = 0; i < XMLSelectionRootAttributes.length; i++){
+        let tr=document.createElement('tr');
+        tblB.appendChild(document.createTextNode(XMLSelectionRootAttributes[i]));
+    }
+    document.body.appendChild(table);
+}
