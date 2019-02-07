@@ -18,37 +18,26 @@ function init() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-            XMLDoc = this.responseXML;
-            console.log("XMLDoc --> " + XMLDoc);
-            console.log(XMLDoc);
-
-            XMLRoot = XMLDoc.getRootNode();//nodeValue;
-            console.log("XMLRoot --> " + XMLRoot);
-            console.log(XMLRoot);
-
-            XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag
-            console.log("XMLRootAttributes --> " + XMLRootAttributes);
-            console.log(XMLRootAttributes);
+            XMLDoc = this.responseXML; //restituisce l'xml in chiaro
+            XMLRoot = XMLDoc.getRootNode();//come XMLDoc restituisce l'xml in chiaro
+            XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag in un array
 
             for (i = 0; i < XMLRootAttributes.length; i++) {
-                attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag
-
+                attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag sono stringhe e non array
                 attrNameU = attrName.filter(function (elem, pos) {
                     return attrName.indexOf(elem) == pos;
                 });
-
             }
-            console.log("attrName= ---> " + attrName);
-            console.log("attrName[i]= ---> " + attrName[2]); //accedo ad un elemento a caso
-
             //PROVO A FARE UNA SELEZIONE E RICAVARE GLI ATTRIBUTI
-            selection = select(XMLDoc, attrName[2]);
-            console.log("selection (XMLDoc, attrName[2] --> " + selection);
+            selection = select(XMLDoc, attrName[2]); //restituisce i tag contenuti nel tag selezionato (i figli)
             console.log(selection);
 
 
             //questo è un testttt!
-            XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selection); //restituisce tutti i tag
+
+            XMLSelectionRootAttributes = XMLRootAttributes.getElementsByTagName("innerHTML"); //restituisce tutti i tag
+
+            // XMLSelectionRootAttributes = selection.getElementsByTagName("innerHTML"); //restituisce tutti i tag
             console.log("XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
             console.log(XMLSelectionRootAttributes);
 
