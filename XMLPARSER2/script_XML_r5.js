@@ -12,6 +12,7 @@ var XMLSelectionRootAttributes;
 var attrNameU;
 var selection;
 var myobject;
+var s; //i would use this var to store selected node
 
 function init() {
     xhttp = new XMLHttpRequest();
@@ -21,6 +22,7 @@ function init() {
             XMLDoc = this.responseXML; //restituisce l'xml in chiaro
             XMLRoot = XMLDoc.getRootNode();//come XMLDoc restituisce l'xml in chiaro
             XMLRootAttributes = XMLRoot.getElementsByTagName("*"); //restituisce tutti i tag in un array
+
 
             for (i = 0; i < XMLRootAttributes.length; i++) {
                 attrName.push(XMLRootAttributes[i].nodeName); //creo array con tutti i nomi dei tag sono stringhe e non array
@@ -101,38 +103,46 @@ function handleFileSelect(evt) {
 
 function showselectsopt() {
     if (selects.options.length > 0) {
-        XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
-        console.log("**FUNCTION** XMLSelectionRootAttributes --> " + XMLSelectionRootAttributes);
-        console.log(XMLSelectionRootAttributes);
-        //setTable(); //crea la tabella
-        //tagSelection();
-        window.alert("Text: " + selects.options[selects.selectedIndex].text + "\nValue: " + selects.options[selects.selectedIndex].value);
+      s=selects.options[selects.selectedIndex];
+        // XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
+        XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(s.value);
+        // window.alert("Text: " + selects.options[selects.selectedIndex].text + "\nValue: " + selects.options[selects.selectedIndex].value);
+        window.alert("Text: " + s.text + "\nValue: " + s.value);
     }
     else {
         window.alert("Select box is empty");
     }
 }
 
-//Select function - added 29th jan 2019 **NON FUNGE**
-function tagSelection() {
-    XMLSelectionRootAttributes = XMLDoc.getElementsByTagName(selects.options[selects.selectedIndex].value);
-    console.log("**FUNCTION** XMLSelectionRootAttributes --> WAKAWAKA " + XMLSelectionRootAttributes);
-    console.log(XMLSelectionRootAttributes);
-
-}
 
 //TABLE
+// function setTable() {
+//     //let tableArea=document.getElementById('table');
+//     let table;
+//     let row=[];
+//     let cell=[];
+//     table=document.createElement('table');
+//     for (i=0;i<attrNameU.length;i++){
+//       row[i]=table.insertRow();
+//       cell[i]=row[i].insertCell();
+//       cell[i].innerHTML=attrNameU[i];
+//     }
+//     document.body.appendChild(table);
+//   }
+
 function setTable() {
     //let tableArea=document.getElementById('table');
     let table;
     let row=[];
     let cell=[];
     table=document.createElement('table');
-    console.log("--- "+attrNameU.length);
-    for (i=0;i<attrNameU.length;i++){
+    for (i=0;i<s.length;i++){
       row[i]=table.insertRow();
       cell[i]=row[i].insertCell();
-      cell[i].innerHTML=attrNameU[i];
+      console.log(s.text);
+      console.log(s[i].text);
+      cell[i].innerHTML=myobject;
+
     }
     document.body.appendChild(table);
   }
